@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="overlay">Tap to enter ❤️</div>
+
+<audio id="music" loop>
+  <source src="song.mp3">
+</audio>
+
+<div class="container hidden" id="main">
+
+  <div id="step1">
+    <h1>Is that my Billu? 🥺</h1>
+    <button onclick="yes()">Yes</button>
+    <button onclick="no()">No</button>
+  </div>
+
+  <div id="step2" class="hidden">
+    <h1>This is a little of our world I tried to make ❤️</h1>
+    <button onclick="goSecret()">Continue</button>
+  </div>
+
+  <div id="nope" class="hidden">
+    <h1>Sorry… this wasn’t meant for you 💔</h1>
+  </div>
+
+</div>
+
+<script>
+const overlay = document.getElementById("overlay");
+const music = document.getElementById("music");
+
+overlay.onclick = () => {
+  overlay.style.display = "none";
+  document.getElementById("main").classList.remove("hidden");
+
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  const fade = setInterval(() => {
+    if (vol < 1) {
+      vol += 0.05;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
+};
+
+function yes() {
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+}
+
+function no() {
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("nope").classList.remove("hidden");
+}
+
+function goSecret() {
+  window.location.href = "secret.html";
+}
+</script>
+
+</body>
+</html>
