@@ -15,19 +15,82 @@
 
 <div class="container hidden" id="main">
 
+  <!-- STEP 1 -->
   <div id="step1">
     <h1>Is that my Billu? 🥺</h1>
     <button onclick="yes()">Yes</button>
     <button onclick="no()">No</button>
   </div>
 
+  <!-- STEP 2 -->
   <div id="step2" class="hidden">
     <h1>This is a little of our world I tried to make ❤️</h1>
-    <button onclick="goSecret()">Continue</button>
+    <button onclick="showPassword()">Continue</button>
   </div>
 
+  <!-- WRONG -->
   <div id="nope" class="hidden">
     <h1>Sorry… this wasn’t meant for you 💔</h1>
+  </div>
+
+  <!-- PASSWORD -->
+  <div id="passwordPage" class="hidden">
+    <h1>Enter Password 🔐</h1>
+    <p>Hint: the first thing you ever loved about me 💭</p>
+
+    <input type="password" id="pass">
+    <br><br>
+    <button onclick="check()">Enter</button>
+
+    <p id="msg"></p>
+  </div>
+
+  <!-- FINAL PAGE -->
+  <div id="finalPage" class="hidden">
+
+    <h1>For You ❤️</h1>
+
+    <div class="gallery">
+      <img src="img1.jpg">
+      <img src="img2.jpg">
+      <img src="img3.jpg">
+    </div>
+
+    <p class="poem">
+I didn’t plan you,
+not like people plan love stories,
+no perfect timing, no perfect version of me.
+
+You just happened,
+and suddenly everything felt a little more real.
+
+Somewhere between random conversations
+and moments I didn’t even notice then,
+you became… my favourite part of everything.
+
+It’s funny,
+how you act like you don’t care sometimes,
+and yet somehow,
+you’re the only place I feel completely held.
+
+I don’t say it all out loud,
+not always,
+but there are things I feel
+every time I’m with you,
+that words don’t really do justice to.
+
+So I didn’t try to give you something perfect,
+I just gave you pieces of me instead,
+
+for the 19 years
+I didn’t get to love you.
+
+And maybe I can’t go back and be there then,
+but I’m here now…
+
+and I don’t plan on leaving anytime soon.
+    </p>
+
   </div>
 
 </div>
@@ -64,8 +127,20 @@ function no() {
   document.getElementById("nope").classList.remove("hidden");
 }
 
-function goSecret() {
-  window.location.href = "secret.html";
+function showPassword() {
+  document.getElementById("step2").classList.add("hidden");
+  document.getElementById("passwordPage").classList.remove("hidden");
+}
+
+function check() {
+  const password = document.getElementById("pass").value;
+
+  if(password.toLowerCase() === "hair") {
+    document.getElementById("passwordPage").classList.add("hidden");
+    document.getElementById("finalPage").classList.remove("hidden");
+  } else {
+    document.getElementById("msg").innerText = "Wrong password 💔";
+  }
 }
 </script>
 
